@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  codigo: MyString
-  nome: MyString
-  preco: 9.99
-  tipo: MyString
-  fabricante: MyString
+  codigo: P1234
+  nome: Filtro de Oleo
+  preco: 49.90
+  tipo: Motor
+  fabricante: AutoParts Ltda
   data_validade: 2024-08-11
 
 two:
-  codigo: MyString
-  nome: MyString
-  preco: 9.99
-  tipo: MyString
-  fabricante: MyString
+  codigo: A5678
+  nome: Pastilha de Freio Dianteira
+  preco: 89.90
+  tipo: Freio
+  fabricante: BrakeTech S.A
   data_validade: 2024-08-11

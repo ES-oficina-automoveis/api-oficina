@@ -2,21 +2,30 @@
 
 one:
   id: 1
-  placa: MyString
-  modelo: MyString
-  ano: 1
-  cor: MyString
-  quilometragem: 1
-  chassi: MyString
+  placa: XYZ5678
+  modelo: Ferrari
+  ano: 2006
+  cor: vermelho
+  quilometragem: 10000
+  chassi: 8N2DhvhuKE0W45966
   cliente_id: 1
 
 two:
   id: 2
-  placa: MyString
-  modelo: MyString
-  ano: 1
-  cor: MyString
-  quilometragem: 1
-  chassi: MyString
+  placa: ABC1234
+  modelo: Supra
+  ano: 1994
+  cor: laranja
+  quilometragem: 20000
+  chassi: 3X7Fp9bRJ2YU65432
   cliente_id: 2
 
+tree:
+  id: 3
+  placa: ABF1254
+  modelo: Camaro
+  ano: 1994
+  cor: amarelo
+  quilometragem: 25000
+  chassi: 3X7Fp7cRJ2YU65432
+  cliente_id: 1

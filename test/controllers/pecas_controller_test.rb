@@ -17,7 +17,7 @@ class PecasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create peca" do
     assert_difference("Peca.count") do
-      post pecas_url, params: { peca: { codigo: @peca.codigo, data_validade: @peca.data_validade, fabricante: @peca.fabricante, nome: @peca.nome, preco: @peca.preco, tipo: @peca.tipo } }
+      post pecas_url, params: { peca: { codigo: "P1256", data_validade: @peca.data_validade, fabricante: @peca.fabricante, nome: @peca.nome, preco: @peca.preco, tipo: @peca.tipo } }
     end
 
     assert_redirected_to peca_url(Peca.last)

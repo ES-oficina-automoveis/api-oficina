@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  data_inicio: 2024-08-11 15:55:47
-  data_termino: 2024-08-11 15:55:47
-  status: MyString
+  data_inicio: <%= 1.day.ago %>
+  data_termino: <%= Time.now %>
+  status: ""
   veiculo_id: 1
 
 two:
-  data_inicio: 2024-08-11 15:55:47
-  data_termino: 2024-08-11 15:55:47
-  status: MyString
+  data_inicio: <%= 1.day.ago %>
+  data_termino: <%= Time.now %>
+  status: andamento
   veiculo_id: 2

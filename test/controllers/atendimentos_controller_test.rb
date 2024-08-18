@@ -17,7 +17,12 @@ class AtendimentosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create atendimento" do
     assert_difference("Atendimento.count") do
-      post atendimentos_url, params: { atendimento: { data_inicio: @atendimento.data_inicio, data_termino: @atendimento.data_termino, status: @atendimento.status, veiculo_id: @atendimento.veiculo_id } }
+      post atendimentos_url, params: { atendimento: {
+        data_inicio: "2024-08-18 10:00:00",
+        data_termino: "2024-08-18 12:00:00",
+        status: "agendado",
+        veiculo_id: veiculos(:one).id
+      } }
     end
 
     assert_redirected_to atendimento_url(Atendimento.last)
@@ -34,7 +39,13 @@ class AtendimentosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update atendimento" do
-    patch atendimento_url(@atendimento), params: { atendimento: { data_inicio: @atendimento.data_inicio, data_termino: @atendimento.data_termino, status: @atendimento.status, veiculo_id: @atendimento.veiculo_id } }
+    patch atendimento_url(@atendimento), params: { atendimento: {
+      data_inicio: "2024-08-19 10:00:00",
+      data_termino: "2024-08-19 12:00:00",
+      status: "andamento",
+      veiculo_id: veiculos(:two).id
+    } }
+
     assert_redirected_to atendimento_url(@atendimento)
   end
 

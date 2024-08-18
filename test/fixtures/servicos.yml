@@ -1,13 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  codigo: MyString
-  nome: MyString
-  descricao: MyText
-  preco: 9.99
+  codigo: S123
+  nome: Manutenção Preventiva
+  descricao: Realização de inspeções e ajustes regulares em equipamentos.
+  preco: 150.00
 
 two:
-  codigo: MyString
-  nome: MyString
-  descricao: MyText
-  preco: 9.99
+  codigo: S456
+  nome: Instalação de Ar-Condicionado
+  descricao: Instalação completa de sistemas de ar-condicionado em residências e escritórios
+  preco: 450.00
+

@@ -1,19 +1,20 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  matricula: MyString
-  nome: MyString
-  cargo: MyString
-  email: MyString
-  salario: 9.99
-  data_admissao: 2024-08-11
-  cpf: MyString
+  matricula: F12345
+  nome: Joao da Silva
+  cargo: Analista de Recursos Humanos
+  email: joao.silva@empresa.com.br
+  salario: 5000.00
+  data_admissao: 2024-08-1
+  cpf: 12345678909
 
 two:
-  matricula: MyString
-  nome: MyString
-  cargo: MyString
+  matricula: A98765
+  nome: Maria Oliveira
+  cargo: Gerente de Vendas
   email: MyString
-  salario: 9.99
-  data_admissao: 2024-08-11
-  cpf: MyString
+  salario: 8500.00
+  data_admissao: 2024-03-11
+  cpf: 98765432100
+
