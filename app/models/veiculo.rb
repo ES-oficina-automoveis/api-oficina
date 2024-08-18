@@ -1,5 +1,6 @@
 class Veiculo < ApplicationRecord
   belongs_to :cliente
+ main
   has_many :atendimentos
 
   validates :placa, presence: true, uniqueness: true, length: { minimum: 7, maximum: 7 }

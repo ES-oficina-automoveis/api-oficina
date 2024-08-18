@@ -18,6 +18,7 @@ class VeiculosControllerTest < ActionDispatch::IntegrationTest
   test "should create veiculo" do
     assert_difference("Veiculo.count", 1) do
       post veiculos_url, params: { veiculo: { ano: 2024, chassi: 'NEWCHAI1456789345', cor: 'azul', modelo: 'Novo Modelo', placa: 'NEW1234', quilometragem: 5000, cliente_id: 1 } }
+
     end
     assert_response :redirect
     veiculo = Veiculo.last
@@ -56,7 +57,10 @@ class VeiculosControllerTest < ActionDispatch::IntegrationTest
 
     assert_raises(ActiveRecord::RecordNotFound) do
       Veiculo.find(veiculo_to_destroy.id)
+
     end
+
+    assert_empty Atendimento.where(veiculo_id: veiculo_to_destroy.id)
 
     assert_redirected_to veiculos_url
   end

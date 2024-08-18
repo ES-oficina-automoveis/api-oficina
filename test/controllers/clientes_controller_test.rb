@@ -46,6 +46,7 @@ class ClientesControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy cliente and associated veiculos" do
     cliente = Cliente.create!(nome: 'Joao', email: 'unique_email_#{SecureRandom.hex(4)}@gmail.com', telefone: '87999999999', cpf: '12345678888', endereco: 'Ruaseila')
+
     veiculo = cliente.veiculos.create!(placa: 'XOL5678', modelo: 'Ferrari', ano: 2006, cor: 'vermelho', quilometragem: 10000, chassi: '8N2DhvhuKE0W45966')
 
     assert_difference('Cliente.count', -1) do

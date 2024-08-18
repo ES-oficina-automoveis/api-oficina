@@ -9,5 +9,8 @@ one:
 two:
   data_inicio: <%= 1.day.ago %>
   data_termino: <%= Time.now %>
+  
   status: andamento
   veiculo_id: 2
+
+
