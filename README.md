@@ -1,5 +1,7 @@
 # Sistema de Gerenciamento de Oficina de Automóveis
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/68c25f6eb5104d7ba6f8e84449cd73a7)](https://app.codacy.com/gh/ES-oficina-automoveis/api-oficina?utm_source=github.com&utm_medium=referral&utm_content=ES-oficina-automoveis/api-oficina&utm_campaign=Badge_Grade)
+
 ## :octocat: Integrantes
 
 [Airton da Silva](https://github.com/airton23) | [Gabriel Severo](https://github.com/SeveroGabriel) | [Igor Costa](https://github.com/Igordcs) | [Marcos Vinícius](https://github.com/mvinicavalcante) | [Paulo Henrique](https://github.com/PauloHS8) | [Pedro Lucas](https://github.com/pedro-galdino) | [Rafael Alves](https://github.com/Rafael-acm1)
