@@ -24,12 +24,10 @@ class ServicosController < AdminController
     @servico = Servico.new(servico_params)
 
     respond_to do |format|
-      if @servico.save
-        format.html { redirect_to servico_url(@servico), notice: "Servico cadastrado com sucesso." }
-        format.json { render :show, status: :created, location: @servico }
+      if @servico.present? && current_user.can_access?(@servico)
+        format.html { redirect_to servico_url(@servico), notice: "Serviço cadastrado com sucesso." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @servico.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, alert: "Acesso negado." }
       end
     end
   end
@@ -58,15 +56,16 @@ class ServicosController < AdminController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_servico
-      @servico = Servico.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to servicos_path, notice: "Serviço não encontrado."
-    end
+end
+# Use callbacks to share common setup or constraints between actions.
+def set_servico
+  @servico = Servico.find_by(id: params[:id])
+  if @servico.nil?
+    redirect_to servicos_path, notice: "Serviço não encontrado."
+  end
 
-    # Only allow a list of trusted parameters through.
-    def servico_params
-      params.require(:servico).permit(:codigo, :nome, :descricao, :preco)
-    end
+  # Only allow a list of trusted parameters through.
+  def servico_params
+    params.require(:servico).permit(:codigo, :nome, :descricao, :preco)
+  end
 end

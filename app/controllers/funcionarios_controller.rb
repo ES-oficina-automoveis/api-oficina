@@ -24,12 +24,10 @@ class FuncionariosController < AdminController
     @funcionario = Funcionario.new(funcionario_params)
 
     respond_to do |format|
-      if @funcionario.save
-        format.html { redirect_to funcionario_url(@funcionario), notice: "Funcionario cadastrado com sucesso." }
-        format.json { render :show, status: :created, location: @funcionario }
+      if @funcionario.present? && current_user.can_access?(@funcionario)
+        format.html { redirect_to funcionario_url(@funcionario), notice: "Funcionário cadastrado com sucesso." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @funcionario.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, alert: "Acesso negado." }
       end
     end
   end
@@ -58,15 +56,17 @@ class FuncionariosController < AdminController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_funcionario
-      @funcionario = Funcionario.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to funcionarios_path, notice: "Funcionário não encontrado."
-    end
+end
+# Use callbacks to share common setup or constraints between actions.
+def set_funcionario
+  @funcionario = Funcionario.find_by(id: params[:id])
+  if @funcionario.nil?
+    redirect_to funcionarios_path, notice: "Funcionário não encontrado."
+  end
 
-    # Only allow a list of trusted parameters through.
-    def funcionario_params
-      params.require(:funcionario).permit(:matricula, :nome, :cargo, :email, :salario, :data_admissao, :cpf)
-    end
+
+  # Only allow a list of trusted parameters through.
+  def funcionario_params
+    params.require(:funcionario).permit(:matricula, :nome, :cargo, :email, :salario, :data_admissao, :cpf)
+  end
 end

@@ -64,7 +64,7 @@ class AgendamentosController < ApplicationController
   end
 
   def update_status
-    @agendamento = Agendamento.find(params[:agendamento_id])
+    @agendamento = Agendamento.find_by(id: params[:agendamento_id])
     new_status = params[:status]
 
     if Agendamento.statuses.keys.include?(new_status) && @agendamento.update(status: new_status)

@@ -60,12 +60,12 @@ class EstoquesController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_estoque
-      @estoque = Estoque.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to estoques_path, notice: "Estoque não encontrado."
-    end
+      @estoque = Estoque.find_by(id: params[:id])
+      if @estoque.nil?
+        redirect_to estoques_path, notice: "Estoque não encontrado."
+      end
 
-    # Only allow a list of trusted parameters through.
+      # Only allow a list of trusted parameters through.
     def estoque_params
       params.require(:estoque).permit(:codigo, :quantidade)
     end

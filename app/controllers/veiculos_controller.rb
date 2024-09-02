@@ -24,12 +24,10 @@ class VeiculosController < ApplicationController
     @veiculo = Veiculo.new(veiculo_params)
 
     respond_to do |format|
-      if @veiculo.save
-        format.html { redirect_to veiculo_url(@veiculo), notice: "Veiculo cadastrado com sucesso." }
-        format.json { render :show, status: :created, location: @veiculo }
+      if @veiculo.present? && current_user.can_access?(@veiculo)
+        format.html { redirect_to veiculo_url(@veiculo), notice: "Veículo cadastrado com sucesso." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @veiculo.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, alert: "Acesso negado." }
       end
     end
   end
@@ -48,25 +46,31 @@ class VeiculosController < ApplicationController
   end
 
   # DELETE /veiculos/1 or /veiculos/1.json
-  def destroy
+  begin
     @veiculo.destroy!
-
     respond_to do |format|
-      format.html { redirect_to veiculos_url, notice: "Veiculo excluído com sucesso." }
+      format.html { redirect_to veiculos_url, notice: "Veículo excluído com sucesso." }
       format.json { head :no_content }
+    end
+  rescue ActiveRecord::RecordNotDestroyed => e
+    respond_to do |format|
+      format.html { redirect_to veiculos_url, alert: "Erro ao excluir o veículo: #{e.message}" }
+      format.json { render json: { error: e.message }, status: :unprocessable_entity }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_veiculo
-      @veiculo = Veiculo.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to veiculos_path, notice: "Veículo não encontrado."
-    end
 
-    # Only allow a list of trusted parameters through.
-    def veiculo_params
-      params.require(:veiculo).permit(:placa, :modelo, :ano, :cor, :quilometragem, :chassi, :cliente_id)
-    end
+  private
+end
+# Use callbacks to share common setup or constraints between actions.
+def set_veiculo
+  @veiculo = Veiculo.find_by(id: params[:id])
+  if @veiculo.nil?
+    redirect_to veiculos_path, notice: "Veículo não encontrado."
+  end
+
+  # Only allow a list of trusted parameters through.
+  def veiculo_params
+    params.require(:veiculo).permit(:placa, :modelo, :ano, :cor, :quilometragem, :chassi, :cliente_id)
+  end
 end

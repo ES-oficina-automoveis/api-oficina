@@ -70,9 +70,10 @@ class ClientesController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente
-      @cliente = Cliente.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to clientes_path, notice: "Cliente não encontrado."
+      @cliente = Cliente.find_by(id: params[:id])
+      unless @cliente
+        redirect_to clientes_path, notice: "Cliente não encontrado."
+      end
     end
 
     # Only allow a list of trusted parameters through.

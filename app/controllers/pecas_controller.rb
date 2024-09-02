@@ -24,12 +24,10 @@ class PecasController < AdminController
     @peca = Peca.new(peca_params)
 
     respond_to do |format|
-      if @peca.save
+      if @peca.present? && current_user.can_access?(@peca)
         format.html { redirect_to peca_url(@peca), notice: "Peça cadastrada com sucesso." }
-        format.json { render :show, status: :created, location: @peca }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @peca.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, alert: "Acesso negado." }
       end
     end
   end
@@ -58,15 +56,17 @@ class PecasController < AdminController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_peca
-      @peca = Peca.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to pecas_path, notice: "Peça não encontrada."
-    end
+end
+# Use callbacks to share common setup or constraints between actions.
+def set_peca
+  @peca = Peca.find_by(id: params[:id])
+  if @peca.nil?
+    redirect_to pecas_path, notice: "Peça não encontrada."
+  end
 
-    # Only allow a list of trusted parameters through.
-    def peca_params
-      params.require(:peca).permit(:codigo, :nome, :preco, :tipo, :fabricante, :data_validade)
-    end
+
+  # Only allow a list of trusted parameters through.
+  def peca_params
+    params.require(:peca).permit(:codigo, :nome, :preco, :tipo, :fabricante, :data_validade)
+  end
 end
