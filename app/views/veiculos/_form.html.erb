@@ -40,10 +40,12 @@
     <%= form.text_field :chassi, class: "form-control" %>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :cliente_id, "Cliente", class: "form-label" %>
-    <%= form.collection_select :cliente_id, clientes, :id, :nome, { prompt: "Selecione um cliente" }, { class: "form-select" } %>
-  </div>
+  <% if current_user.admin? %>
+    <div class="mb-3">
+      <%= form.label :cliente_id, "Cliente", class: "form-label" %>
+      <%= form.collection_select :cliente_id, clientes, :id, :nome, { prompt: "Selecione um cliente" }, { class: "form-select" } %>
+    </div>
+  <% end %>
 
   <div class="text-end mt-3">
     <%= form.submit "Salvar", class: "btn btn-primary" %>

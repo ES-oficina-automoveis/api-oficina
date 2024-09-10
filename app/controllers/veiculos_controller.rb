@@ -27,11 +27,21 @@ class VeiculosController < ApplicationController
   # POST /veiculos or /veiculos.json
   def create
     @veiculo = Veiculo.new(veiculo_params)
+
+    unless current_user.admin?
+      @veiculo.cliente_id = current_user.cliente_id
+    end
+
     handle_save(@veiculo.save, :new, "Veículo cadastrado com sucesso.")
   end
 
+
   # PATCH/PUT /veiculos/1 or /veiculos/1.json
   def update
+    unless current_user.admin?
+      @veiculo.cliente_id = current_user.cliente_id
+    end
+
     handle_save(@veiculo.update(veiculo_params), :edit, "Veículo editado com sucesso.")
   end
 
