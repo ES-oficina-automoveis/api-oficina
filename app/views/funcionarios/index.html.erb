@@ -11,6 +11,7 @@
   <thead>
     <tr>
       <th>ID</th>
+      <th>Matrícula</th>
       <th>Nome</th>
       <th>Email</th>
       <th>CPF</th>
@@ -24,6 +25,7 @@
     <% @funcionarios.each do |funcionario| %>
       <tr>
         <td><%= funcionario.id %></td>
+        <td><%= funcionario.matricula %></td>
         <td><%= funcionario.nome %></td>
         <td><%= funcionario.email %></td>
         <td><%= funcionario.cpf %></td>

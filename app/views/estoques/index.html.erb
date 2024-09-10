@@ -13,6 +13,7 @@
       <th>ID</th>
       <th>Código</th>
       <th>Quantidade</th>
+      <th>Peça</th>
       <th colspan="3">Ações</th>
     </tr>
   </thead>
@@ -22,6 +23,7 @@
         <td><%= estoque.id %></td>
         <td><%= estoque.codigo %></td>
         <td><%= estoque.quantidade %></td>
+        <td><%= estoque.peca.nome %></td>
         <td><%= link_to "Exibir", estoque, class: "btn btn-info btn-sm" %></td>
         <td><%= link_to "Editar", edit_estoque_path(estoque), class: "btn btn-warning btn-sm" %></td>
         <td>
